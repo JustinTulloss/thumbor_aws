@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from boto.s3.connection import S3Connection
+from boto.s3.connection import S3Connection, OrdinaryCallingFormat
 
 connection = None
 
@@ -12,7 +12,8 @@ def get_connection(context):
         else:
             conn = S3Connection(
                 context.config.get('AWS_ACCESS_KEY'),
-                context.config.get('AWS_SECRET_KEY')
+                context.config.get('AWS_SECRET_KEY'),
+                calling_format=OrdinaryCallingFormat()
             )
 
     return conn
